@@ -79,6 +79,7 @@ add_library(${PROJECT_NAME} SHARED
         src/KeyFrameDatabase.cc
         src/Sim3Solver.cc
         src/Initializer.cc
+        src/Video.cpp
         src/Viewer.cc)
 
 target_link_libraries(${PROJECT_NAME}
