@@ -101,7 +101,7 @@ int main(int argc, char **argv){
 		visor->setDuracion(video.cantidadCuadros);
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
-		video.abrirCamara(0);
+		video.abrirCamara(2);
 		sleep(1000);
 		visor->setDuracion();
 	}
