@@ -57,7 +57,7 @@ int main(int argc, char **argv){
 
     char* rutaConfiguracion = NULL;
     char* rutaVideo = NULL;
-	char archivoConfiguracionWebcamPorDefecto[] = "webcam.yaml";	// Configuración por defecto, para webcam.
+	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/webcamNacho.yaml";	// Configuración por defecto, para webcam.
 
 	switch(argc){
 	case 1:	// Sin argumentos, webcam por defecto y webcam.yaml como configuración
@@ -80,7 +80,7 @@ int main(int argc, char **argv){
 
 	// Inicializa el sistema SLAM.
     // Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
-    ORB_SLAM2::System SLAM("orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
+    ORB_SLAM2::System SLAM("/home/toams/facultad/os1/orbVoc.bin", rutaConfiguracion,ORB_SLAM2::System::MONOCULAR,true);
 
     // Puntero global al sistema singleton
     Sistema = &SLAM;
@@ -102,6 +102,7 @@ int main(int argc, char **argv){
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
 		video.abrirCamara(0);
+		sleep(1000);
 		visor->setDuracion();
 	}
 
