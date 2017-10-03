@@ -43,10 +43,24 @@
 #include <Serializer.h>
 #include <Video.h>
 
-
 using namespace std;
 
 ORB_SLAM2::System *Sistema;
+
+/**
+ * Cambios hechos:
+ *
+ * - Agregué el código para que apretando la tecla m, imprima la matriz de rototraslación del
+ * frame actual solo si está inicializado ORB_SLAM.
+ *
+ * - Arreglé el error de compilación de la SparseMatrix de Eigen, cambiando el SparseMatrix::Index por un
+ * int en el field que usa Sparse::Matrix
+ *
+ * - Agregué que cuando relocaliza, imprima la matriz de rototraslación.
+ *
+ * - Arreglé el problema del BOOM de cuando carga el mapa habiendo inicializado. Para eso hago que se resetee
+ * y después carga el mapa.
+ */
 
 int main(int argc, char **argv){
 
@@ -57,7 +71,7 @@ int main(int argc, char **argv){
 
     char* rutaConfiguracion = NULL;
     char* rutaVideo = NULL;
-	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/webcamNacho.yaml";	// Configuración por defecto, para webcam.
+	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/myWebcam.yaml";	// Configuración por defecto, para webcam.
 
 	switch(argc){
 	case 1:	// Sin argumentos, webcam por defecto y webcam.yaml como configuración
@@ -76,7 +90,6 @@ int main(int argc, char **argv){
 		break;
 
 	}
-
 
 	// Inicializa el sistema SLAM.
     // Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
@@ -101,13 +114,12 @@ int main(int argc, char **argv){
 		visor->setDuracion(video.cantidadCuadros);
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
-		video.abrirCamara(2);
-		sleep(1000);
+		video.abrirCamara(1);
 		visor->setDuracion();
 	}
 
 
-
+    bool hasPrintedMatrix = false;
 
     while(true){
 
@@ -134,6 +146,12 @@ int main(int argc, char **argv){
 
         // Pass the image to the SLAM system
         if(video.imagenDisponible)
+            if(SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix){
+                hasPrintedMatrix = !hasPrintedMatrix;
+                cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
+                cout << "La mtriz de rototraslación de la posición es: \n" << endl;
+                cout << inverse << endl;
+            }
         	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
 
 
@@ -141,6 +159,7 @@ int main(int argc, char **argv){
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;
 
+            SLAM.mpTracker->mState = ORB_SLAM2::Tracking::NOT_INITIALIZED;
     		// El reset subsiguiente requiere que LocalMapping no esté pausado.
     		SLAM.mpLocalMapper->Release();
 
