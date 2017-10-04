@@ -182,6 +182,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/toams/facultad/os1/include/TcpSocket.h">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
 		<Unit filename="/home/toams/facultad/os1/src/Converter.cc">
 			<Option target="ORB_SLAM2"/>
 		</Unit>

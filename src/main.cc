@@ -58,11 +58,39 @@ ORB_SLAM2::System *Sistema;
  *
  * - Agregué que cuando relocaliza, imprima la matriz de rototraslación.
  *
- * - Arreglé el problema del BOOM de cuando carga el mapa habiendo inicializado. Para eso hago que se resetee
- * y después carga el mapa.
  */
 
 int main(int argc, char **argv){
+
+    cout    << "Arrancando el socket" << endl;
+    // TODO ver imports.
+    /*
+        try{
+            boost::asio::io_service io_service;
+            tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 7000));
+
+            Esto hay que ponerlo después de que arranque ORB_SLAM, así se queda esperando input.
+            Hay que agregar un if else para que vaya si hay una imágen en el buffer, en vez
+            del input.
+            Después que funcione todo, habría que desahbilitar la cámara.
+
+            tcp::socket socket(io_service);
+            acceptor.accept(socket);
+
+            boost::array<char, 128> buf;
+            boost::system::error_code error;
+
+            size_t len = socket.read_some(boost::asio::buffer(buf), error);
+
+            La respuesta, ponerlo donde está aclarado, todavía hay que ver como escribirla
+
+            boost::system::error_code ignored_error;
+            boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
+
+        } catch (std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
+     */
 
 	cout	<< "Iniciando ORB-SLAM.  Línea de comando:" << endl
 			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
@@ -71,7 +99,7 @@ int main(int argc, char **argv){
 
     char* rutaConfiguracion = NULL;
     char* rutaVideo = NULL;
-	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/myWebcam.yaml";	// Configuración por defecto, para webcam.
+	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/webcamNacho.yaml";	// Configuración por defecto, para webcam.
 
 	switch(argc){
 	case 1:	// Sin argumentos, webcam por defecto y webcam.yaml como configuración
@@ -114,7 +142,7 @@ int main(int argc, char **argv){
 		visor->setDuracion(video.cantidadCuadros);
 	}else{
 		// No hay parámetros, no hay video, sólo webcam.
-		video.abrirCamara(1);
+		video.abrirCamara(2);
 		visor->setDuracion();
 	}
 
@@ -151,6 +179,7 @@ int main(int argc, char **argv){
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
                 cout << "La mtriz de rototraslación de la posición es: \n" << endl;
                 cout << inverse << endl;
+                /* Escribir respuesta acá */
             }
         	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
 
