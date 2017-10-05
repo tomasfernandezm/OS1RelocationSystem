@@ -80,7 +80,7 @@ add_library(${PROJECT_NAME} SHARED
         src/Sim3Solver.cc
         src/Initializer.cc
         src/Video.cpp
-        src/Viewer.cc include/TcpSocket.h)
+        src/Viewer.cc)
 
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}

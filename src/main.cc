@@ -148,6 +148,7 @@ int main(int argc, char **argv){
 
 
     bool hasPrintedMatrix = false;
+    bool hasInitialized = false;
 
     while(true){
 
@@ -174,6 +175,13 @@ int main(int argc, char **argv){
 
         // Pass the image to the SLAM system
         if(video.imagenDisponible)
+
+            if(SLAM.mpTracker->mState == 2 && !hasInitialized){
+                hasInitialized = !hasInitialized;
+                cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
+                cout << "La matriz de rototraslación inicial es: \n" << endl;
+                cout << inverse << endl;
+            }
             if(SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix){
                 hasPrintedMatrix = !hasPrintedMatrix;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
