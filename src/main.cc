@@ -149,6 +149,8 @@ int main(int argc, char **argv){
 
     bool hasPrintedMatrix = false;
     bool hasInitialized = false;
+    bool mapaCargado = false;
+    int amountOfFramesToRelocate = 0;
 
     while(true){
 
@@ -176,6 +178,10 @@ int main(int argc, char **argv){
         // Pass the image to the SLAM system
         if(video.imagenDisponible)
 
+            if(mapaCargado && SLAM.mpTracker->mState == 3){
+                amountOfFramesToRelocate = amountOfFramesToRelocate + 1;
+            }
+
             if(SLAM.mpTracker->mState == 2 && !hasInitialized){
                 hasInitialized = !hasInitialized;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
@@ -185,7 +191,9 @@ int main(int argc, char **argv){
             if(SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix){
                 hasPrintedMatrix = !hasPrintedMatrix;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
-                cout << "La mtriz de rototraslación de la posición es: \n" << endl;
+                cout << "La mtriz de rototraslación de la posición localizada es: \n" << endl;
+                cout << "Necesitó"<< endl;
+                cout << amountOfFramesToRelocate << endl;
                 cout << inverse << endl;
                 /* Escribir respuesta acá */
             }
@@ -232,6 +240,7 @@ int main(int argc, char **argv){
 			// Por las dudas, es lo que hace Tracking luego que el estado pase a LOST.
 			// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
 			SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
+            mapaCargado = true;
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
