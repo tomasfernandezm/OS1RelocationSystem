@@ -24,6 +24,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.o"
   "CMakeFiles/ORB_SLAM2.dir/src/Video.cpp.o"
   "CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o"
+  "CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o"
   "../lib/libORB_SLAM2.pdb"
   "../lib/libORB_SLAM2.so"
 )

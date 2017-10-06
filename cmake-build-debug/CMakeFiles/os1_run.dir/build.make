@@ -130,6 +130,7 @@ os1_run_EXTERNAL_OBJECTS =
 ../src/os1_run: ../Thirdparty/DBoW2/lib/libDBoW2.so
 ../src/os1_run: ../Thirdparty/g2o/lib/libg2o.so
 ../src/os1_run: /home/toams/lib/boost/lib/libboost_serialization.so
+../src/os1_run: /home/toams/lib/boost/lib/libboost_system.so.1.64.0
 ../src/os1_run: CMakeFiles/os1_run.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/toams/facultad/os1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../src/os1_run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/os1_run.dir/link.txt --verbose=$(VERBOSE)

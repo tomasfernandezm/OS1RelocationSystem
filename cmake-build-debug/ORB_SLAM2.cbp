@@ -245,6 +245,9 @@
 		<Unit filename="/home/toams/facultad/os1/src/System.cc">
 			<Option target="ORB_SLAM2"/>
 		</Unit>
+		<Unit filename="/home/toams/facultad/os1/src/TcpSocketImageDecoder.cpp">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
 		<Unit filename="/home/toams/facultad/os1/src/Tracking.cc">
 			<Option target="ORB_SLAM2"/>
 		</Unit>

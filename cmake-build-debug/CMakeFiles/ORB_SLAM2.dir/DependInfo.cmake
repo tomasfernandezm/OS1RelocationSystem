@@ -25,6 +25,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/toams/facultad/os1/src/Serializer.cpp" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Serializer.cpp.o"
   "/home/toams/facultad/os1/src/Sim3Solver.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Sim3Solver.cc.o"
   "/home/toams/facultad/os1/src/System.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/System.cc.o"
+  "/home/toams/facultad/os1/src/TcpSocketImageDecoder.cpp" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o"
   "/home/toams/facultad/os1/src/Tracking.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Tracking.cc.o"
   "/home/toams/facultad/os1/src/Video.cpp" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Video.cpp.o"
   "/home/toams/facultad/os1/src/Viewer.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Viewer.cc.o"

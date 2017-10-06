@@ -703,6 +703,33 @@ src/System.cc.s:
 	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/System.cc.s
 .PHONY : src/System.cc.s
 
+src/TcpSocketImageDecoder.o: src/TcpSocketImageDecoder.cpp.o
+
+.PHONY : src/TcpSocketImageDecoder.o
+
+# target to build an object file
+src/TcpSocketImageDecoder.cpp.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o
+.PHONY : src/TcpSocketImageDecoder.cpp.o
+
+src/TcpSocketImageDecoder.i: src/TcpSocketImageDecoder.cpp.i
+
+.PHONY : src/TcpSocketImageDecoder.i
+
+# target to preprocess a source file
+src/TcpSocketImageDecoder.cpp.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.i
+.PHONY : src/TcpSocketImageDecoder.cpp.i
+
+src/TcpSocketImageDecoder.s: src/TcpSocketImageDecoder.cpp.s
+
+.PHONY : src/TcpSocketImageDecoder.s
+
+# target to generate assembly for a file
+src/TcpSocketImageDecoder.cpp.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.s
+.PHONY : src/TcpSocketImageDecoder.cpp.s
+
 src/Tracking.o: src/Tracking.cc.o
 
 .PHONY : src/Tracking.o
@@ -887,6 +914,9 @@ help:
 	@echo "... src/System.o"
 	@echo "... src/System.i"
 	@echo "... src/System.s"
+	@echo "... src/TcpSocketImageDecoder.o"
+	@echo "... src/TcpSocketImageDecoder.i"
+	@echo "... src/TcpSocketImageDecoder.s"
 	@echo "... src/Tracking.o"
 	@echo "... src/Tracking.i"
 	@echo "... src/Tracking.s"

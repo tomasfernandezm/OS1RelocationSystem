@@ -151,6 +151,7 @@ int main(int argc, char **argv){
     bool hasInitialized = false;
     bool mapaCargado = false;
     int amountOfFramesToRelocate = 0;
+    bool imageHasBeenSent;
 
     while(true){
 
@@ -176,30 +177,31 @@ int main(int argc, char **argv){
     	std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 
         // Pass the image to the SLAM system
-        if(video.imagenDisponible)
+        if(video.imagenDisponible || imageHasBeenSent) {
 
-            if(mapaCargado && SLAM.mpTracker->mState == 3){
+            // todos los if son míos
+            if (mapaCargado && SLAM.mpTracker->mState == 3) {
                 amountOfFramesToRelocate = amountOfFramesToRelocate + 1;
             }
 
-            if(SLAM.mpTracker->mState == 2 && !hasInitialized){
+            if (SLAM.mpTracker->mState == 2 && !hasInitialized) {
                 hasInitialized = !hasInitialized;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
                 cout << "La matriz de rototraslación inicial es: \n" << endl;
                 cout << inverse << endl;
             }
-            if(SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix){
+            if (SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix) {
                 hasPrintedMatrix = !hasPrintedMatrix;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
                 cout << "La mtriz de rototraslación de la posición localizada es: \n" << endl;
-                cout << "Necesitó"<< endl;
+                cout << "Necesitó" << endl;
                 cout << amountOfFramesToRelocate << endl;
                 cout << inverse << endl;
                 /* Escribir respuesta acá */
             }
-        	SLAM.TrackMonocular(video.getImagen(),(double)video.posCuadro);
+            SLAM.TrackMonocular(video.getImagen(), (double) video.posCuadro);
 
-
+        }
     	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
     	if(visor->cargarMapa){
     		visor->cargarMapa = false;

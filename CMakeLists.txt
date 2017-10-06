@@ -38,6 +38,7 @@ endif()
 
 find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
+find_package(Boost 1.58.0 REQUIRED system)
 
 include_directories(
         /home/toams/lib/boost/include
@@ -80,7 +81,8 @@ add_library(${PROJECT_NAME} SHARED
         src/Sim3Solver.cc
         src/Initializer.cc
         src/Video.cpp
-        src/Viewer.cc)
+        src/Viewer.cc
+        src/TcpSocketImageDecoder.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}
@@ -90,6 +92,7 @@ target_link_libraries(${PROJECT_NAME}
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
         /home/toams/lib/boost/lib/
         /home/toams/lib/boost/lib/libboost_serialization.so
+        /home/toams/lib/boost/lib/libboost_system.so.1.64.0
         )
 
 
