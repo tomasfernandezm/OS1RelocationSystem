@@ -42,6 +42,7 @@
 #include <FrameDrawer.h>
 #include <Serializer.h>
 #include <Video.h>
+#include <include/TcpSocketImageDecoder.h>
 
 using namespace std;
 
@@ -62,36 +63,6 @@ ORB_SLAM2::System *Sistema;
 
 int main(int argc, char **argv){
 
-    cout    << "Arrancando el socket" << endl;
-    // TODO ver imports.
-    /*
-        try{
-            boost::asio::io_service io_service;
-            tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 7000));
-
-            Esto hay que ponerlo después de que arranque ORB_SLAM, así se queda esperando input.
-            Hay que agregar un if else para que vaya si hay una imágen en el buffer, en vez
-            del input.
-            Después que funcione todo, habría que desahbilitar la cámara.
-
-            tcp::socket socket(io_service);
-            acceptor.accept(socket);
-
-            boost::array<char, 128> buf;
-            boost::system::error_code error;
-
-            size_t len = socket.read_some(boost::asio::buffer(buf), error);
-
-            La respuesta, ponerlo donde está aclarado, todavía hay que ver como escribirla
-
-            boost::system::error_code ignored_error;
-            boost::asio::write(socket, boost::asio::buffer(message), ignored_error);
-
-        } catch (std::exception& e) {
-            std::cerr << e.what() << std::endl;
-        }
-     */
-
 	cout	<< "Iniciando ORB-SLAM.  Línea de comando:" << endl
 			<< "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml" << endl;
 
@@ -101,7 +72,7 @@ int main(int argc, char **argv){
     char* rutaVideo = NULL;
 	char archivoConfiguracionWebcamPorDefecto[] = "/home/toams/facultad/os1/webcamNacho.yaml";	// Configuración por defecto, para webcam.
 
-	switch(argc){
+    switch(argc){
 	case 1:	// Sin argumentos, webcam por defecto y webcam.yaml como configuración
 		rutaConfiguracion = archivoConfiguracionWebcamPorDefecto;
 		cout << "Sin argumentos, webcam con esta configuración: " << rutaConfiguracion << endl;
@@ -146,12 +117,19 @@ int main(int argc, char **argv){
 		visor->setDuracion();
 	}
 
+    cout << "Recibiendo imagen" << endl;
+
+    TcpSocketImageDecoder tcid;
+    cv::Mat img = tcid.receiveImage();
+    cout << "Imagen recibida" << endl;
+
+    // cv::Mat img = cv::imread("../photo2.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 
     bool hasPrintedMatrix = false;
     bool hasInitialized = false;
     bool mapaCargado = false;
     int amountOfFramesToRelocate = 0;
-    bool imageHasBeenSent;
+    bool imageHasBeenSent = true;
 
     while(true){
 
@@ -178,7 +156,7 @@ int main(int argc, char **argv){
 
         // Pass the image to the SLAM system
         if(video.imagenDisponible || imageHasBeenSent) {
-
+            cout << "Entró" << endl;
             // todos los if son míos
             if (mapaCargado && SLAM.mpTracker->mState == 3) {
                 amountOfFramesToRelocate = amountOfFramesToRelocate + 1;
@@ -199,7 +177,9 @@ int main(int argc, char **argv){
                 cout << inverse << endl;
                 /* Escribir respuesta acá */
             }
-            SLAM.TrackMonocular(video.getImagen(), (double) video.posCuadro);
+
+            SLAM.TrackMonocular(img , (double) video.posCuadro);
+            // SLAM.TrackMonocular(video.getImagen(), (double) video.posCuadro);
 
         }
     	// Ver si hay señal para cargar el mapa, que debe hacerse desde este thread

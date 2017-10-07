@@ -37,10 +37,6 @@ Mat TcpSocketImageDecoder::receiveImage() {
 
         Mat img = imdecode(data, IMREAD_UNCHANGED);
 
-        // left for Debugging purposes
-        imshow("Image", img);
-        waitKey();
-
         return img;
 
     }
