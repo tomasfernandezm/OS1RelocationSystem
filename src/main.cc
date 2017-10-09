@@ -130,6 +130,7 @@ int main(int argc, char **argv){
     bool mapaCargado = false;
     int amountOfFramesToRelocate = 0;
     bool imageHasBeenSent = true;
+	cv::Mat initialMatrix;
 
     while(true){
 
@@ -164,17 +165,20 @@ int main(int argc, char **argv){
 
             if (SLAM.mpTracker->mState == 2 && !hasInitialized) {
                 hasInitialized = !hasInitialized;
-                cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
+                initialMatrix = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
                 cout << "La matriz de rototraslación inicial es: \n" << endl;
-                cout << inverse << endl;
+                cout << initialMatrix << endl;
             }
             if (SLAM.mpTracker->mState == 2 && SLAM.mpTracker->mbOnlyTracking && !hasPrintedMatrix) {
                 hasPrintedMatrix = !hasPrintedMatrix;
                 cv::Mat inverse = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
                 cout << "La mtriz de rototraslación de la posición localizada es: \n" << endl;
-                cout << "Necesitó" << endl;
-                cout << amountOfFramesToRelocate << endl;
-                cout << inverse << endl;
+				cout << inverse << endl;
+				cout << "Necesitó" << endl;
+				cout << amountOfFramesToRelocate << endl;
+				cout << "El vector de traslación es: " << endl;
+				cout << (inverse - initialMatrix).col(3) << endl;
+
                 /* Escribir respuesta acá */
             }
 
