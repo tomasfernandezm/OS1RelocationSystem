@@ -32,6 +32,7 @@
 #include <chrono>
 #include <unistd.h>
 #include <thread>
+#include <string>
 
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
@@ -175,10 +176,17 @@ int main(int argc, char **argv){
 				cout << inverse << endl;
 				cout << "Necesitó" << endl;
 				cout << amountOfFramesToRelocate << endl;
-				cout << "El vector de traslación es: " << endl;
-				cout << inverse.inv()*(initialMatrix.col(3)).rowRange(0, 2) << endl;
+                cout << "El vector de traslación es: " << endl;
+				cv::Mat vector = inverse.inv()*(initialMatrix.col(3)).rowRange(0, 2);
+                cout << vector << endl;
 
+                int x = vector.at<int>(0, 0);
+                int y = vector.at<int>(1, 0);
+                int z = vector.at<int>(2, 0);
+
+                std::string str= to_string(x) +" "+ to_string(y) +" "+ to_string(z);
                 /* Escribir respuesta acá */
+                tcid.sendLocation("localhost", 7001, str);
                 /* Coordenada Z para adelante, X para la derecha e Y para abajo*/
             }
 

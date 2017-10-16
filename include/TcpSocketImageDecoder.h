@@ -24,6 +24,7 @@ private:
 
 public:
     cv::Mat receiveImage();
+    void sendLocation(std::string host, int port, std::string message);
 };
 
 

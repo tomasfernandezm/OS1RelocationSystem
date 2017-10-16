@@ -4,8 +4,16 @@ var fs = require('fs');
 var client = new net.Socket();
 var server = net.createServer(function(socket) {
     socket.write('Aca tomi la variable socket tiene la fafa que te acaban de mandar mepa\r\n');
+
+	socket.on('data', function(data){
+		console.log(data);
+	});
 });
+
 server.listen(7001, '127.0.0.1');
+
+console.log("Escuchando");
+
 
 var ip = '';
 var port = 7000;
@@ -23,7 +31,7 @@ client.connect(port, ip, function() {
 	console.log('Writing...');
 	client.write(buffer);
 	console.log('Wrote !!');
-	client.destroy();
+	client.end();
 });
 
 client.on('data', function(data) {
@@ -34,3 +42,4 @@ client.on('data', function(data) {
 client.on('close', function() {
 	console.log('Connection closed');
 });
+

@@ -47,15 +47,28 @@ Mat TcpSocketImageDecoder::receiveImage() {
 
 void TcpSocketImageDecoder::sendLocation(std::string host, int port, std::string message)
 {
-    boost::asio::io_service io_service;
-    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(host), port);
-    boost::asio::ip::tcp::socket socket(ios);
-    socket.connect(endpoint);
-    boost::array<char, 128> buf;
-    std::copy(message.begin(),message.end(),buf.begin());
-    boost::system::error_code error;
-    socket.write_some(boost::asio::buffer(buf, message.size()), error);
-    socket.close();
+    try
+    {
+        boost::asio::io_service io_service;
+
+        tcp::resolver resolver(io_service);
+        tcp::resolver::query query("localhost", "7001");
+        tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
+
+        tcp::socket socket(io_service);
+        boost::asio::connect(socket, endpoint_iterator);
+
+        boost::array<char, 128> buf;
+        std::copy(message.begin(),message.end(),buf.begin());
+
+        boost::system::error_code error;
+        socket.write_some(boost::asio::buffer(buf, message.size()), error);
+        socket.close();
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 
