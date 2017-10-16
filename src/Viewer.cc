@@ -182,17 +182,15 @@ void Viewer::Run(){
         	// Informa al FrameDrawer
         	mpFrameDrawer->factorEscalaImagenParaMostrar = factorEscalaImagenParaMostrar;
         	break;
-            case 'm':
-                if(mpTracker->mState == 2){
-                    cv::Mat matrix = mpTracker->mCurrentFrame.mTcw;
-                    cv::Mat inverse = matrix.inv();
-                    cout << "La matriz de rototraslación de esta frame es: \n" << endl;
-                    cout << inverse << endl;
-                }else{
-                    cout << "ORB_SLAM hasn't initialized yet, so there is no matrix to show \n" << endl;
-                }
-
-
+        case 'm':
+            if(mpTracker->mState == 2){
+                cv::Mat matrix = mpTracker->mCurrentFrame.mTcw;
+                cv::Mat inverse = matrix.inv();
+                cout << "La matriz de rototraslación de esta frame es: \n" << endl;
+                cout << inverse << endl;
+            }else{
+                cout << "ORB_SLAM hasn't initialized yet, so there is no matrix to show \n" << endl;
+            }
         // Reversa, alterna el sentido del tiempo en archivos de video.  Inocuo en otras entradas.
         case 'r':
         	//cout << "Reversa." << endl;

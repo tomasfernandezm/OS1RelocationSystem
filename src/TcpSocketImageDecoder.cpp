@@ -13,7 +13,6 @@ Mat TcpSocketImageDecoder::receiveImage() {
     try
     {
         boost::asio::io_service io_service;
-
         tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 7000));
 
         string decoded_string = "";
@@ -46,9 +45,25 @@ Mat TcpSocketImageDecoder::receiveImage() {
     }
 }
 
+void TcpSocketImageDecoder::sendLocation(std::string host, int port, std::string message)
+{
+    boost::asio::io_service io_service;
+    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address::from_string(host), port);
+    boost::asio::ip::tcp::socket socket(ios);
+    socket.connect(endpoint);
+    boost::array<char, 128> buf;
+    std::copy(message.begin(),message.end(),buf.begin());
+    boost::system::error_code error;
+    socket.write_some(boost::asio::buffer(buf, message.size()), error);
+    socket.close();
+}
+
+
+
 bool TcpSocketImageDecoder::is_base64(unsigned char c) {
     return (isalnum(c) || (c == '+') || (c == '/'));
 }
+
 
 std::string TcpSocketImageDecoder::base64_decode(std::string const &encoded_string) {
     int in_len = encoded_string.size();

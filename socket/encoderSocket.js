@@ -2,6 +2,10 @@ var net = require('net');
 var fs = require('fs');
 
 var client = new net.Socket();
+var server = net.createServer(function(socket) {
+    socket.write('Aca tomi la variable socket tiene la fafa que te acaban de mandar mepa\r\n');
+});
+server.listen(7001, '127.0.0.1');
 
 var ip = '';
 var port = 7000;
