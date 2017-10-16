@@ -157,7 +157,6 @@ int main(int argc, char **argv){
 
         // Pass the image to the SLAM system
         if(video.imagenDisponible || imageHasBeenSent) {
-            cout << "Entró" << endl;
             // todos los if son míos
             if (mapaCargado && SLAM.mpTracker->mState == 3) {
                 amountOfFramesToRelocate = amountOfFramesToRelocate + 1;
@@ -177,9 +176,10 @@ int main(int argc, char **argv){
 				cout << "Necesitó" << endl;
 				cout << amountOfFramesToRelocate << endl;
 				cout << "El vector de traslación es: " << endl;
-				cout << (inverse - initialMatrix).col(3) << endl;
+				cout << inverse.inv()*(initialMatrix.col(3)).rowRange(0, 2) << endl;
 
                 /* Escribir respuesta acá */
+                /* Coordenada Z para adelante, X para la derecha e Y para abajo*/
             }
 
             SLAM.TrackMonocular(img , (double) video.posCuadro);
