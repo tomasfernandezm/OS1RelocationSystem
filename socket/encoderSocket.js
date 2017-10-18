@@ -7,6 +7,7 @@ var server = net.createServer(function(socket) {
 
 	socket.on('data', function(data){
 		console.log(data);
+        console.log(new Buffer(data, 'base64').toString("ascii"));
 	});
 });
 

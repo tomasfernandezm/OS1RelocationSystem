@@ -180,9 +180,9 @@ int main(int argc, char **argv){
 				cv::Mat vector = inverse.inv()*(initialMatrix.col(3)).rowRange(0, 2);
                 cout << vector << endl;
 
-                int x = vector.at<int>(0, 0);
-                int y = vector.at<int>(1, 0);
-                int z = vector.at<int>(2, 0);
+                float x = vector.at<float>(0, 0);
+				float y = vector.at<float>(1, 0);
+				float z = vector.at<float>(2, 0);
 
                 std::string str= to_string(x) +" "+ to_string(y) +" "+ to_string(z);
                 /* Escribir respuesta acá */
