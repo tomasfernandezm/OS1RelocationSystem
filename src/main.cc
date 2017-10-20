@@ -132,6 +132,7 @@ int main(int argc, char **argv){
     int amountOfFramesToRelocate = 0;
     bool imageHasBeenSent = true;
 	cv::Mat initialMatrix;
+    visor->cargarMapa = true;
 
     while(true){
 
@@ -211,17 +212,17 @@ int main(int argc, char **argv){
     		SLAM.mpViewer	  ->RequestStop();
 
         	char charchivo[1024];
-        	FILE *f = popen("zenity --file-selection", "r");
-        	fgets(charchivo, 1024, f);
-
+        	//FILE *f = popen("zenity --file-selection", "r");
+            //fgets(charchivo, 1024, f);
+            char* chararchivo = "a";
         	if(charchivo[0]){
             	while(!SLAM.mpLocalMapper->isStopped()) usleep(1000);
     			while(!SLAM.mpViewer	 ->isStopped()) usleep(1000);
 
-				std::string nombreArchivo(charchivo);
-				nombreArchivo.pop_back();	// Quita el \n final
-				cout << "Abriendo archivo " << nombreArchivo << endl;
-
+				//std::string nombreArchivo(charchivo);
+				//nombreArchivo.pop_back();	// Quita el \n final
+                std::string nombreArchivo("/home/toams/facultad/os1/pieza.osMap");
+                cout << "Abriendo archivo " << nombreArchivo << endl;
 				SLAM.serializer->mapLoad(nombreArchivo);
 				cout << "Mapa cargado." << endl;
 
@@ -235,6 +236,7 @@ int main(int argc, char **argv){
 			// Como tiene un mutex, por las dudas lo invoco después de viewer.release.
 			SLAM.mpFrameDrawer->Update(SLAM.mpTracker);
             mapaCargado = true;
+            SLAM.mpTracker->mbOnlyTracking = true;
     	}
     	if(visor->guardarMapa){
     		visor->guardarMapa = false;
