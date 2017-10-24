@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="index.css">    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        let x;
+        let y;
+        axios.get("http://localhost:3000")
+        .then(function(response) {
+            console.log(response.data);
+            x = response.data.x;
+            y = response.data.y;
+            document.getElementById("triangle").style.bottom = y + "px"; // sets y to the given y coordinate
+            document.getElementById("triangle").style.left = x + "px"; // sets x to the given x coordinate
+            document.getElementById("triangle").style.transform = "rotate(45deg)"; // rotation angle is yet to be defined by the missing third parameter
+        });
+        </script>
+    <div class="content">
+            <div class="img"></div>
+            <div id="triangle" class="triangle"></div>
+        </div>
+</body>
+</html>

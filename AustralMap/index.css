@@ -1,0 +1,40 @@
+
+
+.content{
+	height: 800px;
+	width: 480px;
+	margin: auto;
+}
+
+.img{
+	height: 800px;
+	width: 480px;
+	background-image: url(mapa-PA.png);
+	z-index: 0;
+}
+
+/*Left va entre 225 y 270*/
+/*Bottom va desde 110 a 780 */
+/* 1 mt son 15px*/
+/*Parametro "left" varia. (210px + (coordenada * 15)) */
+/* Parametro "bottom" varia. (110px + (coordenada * 15)) */
+
+.point{
+	height: 10px;
+	width: 10px;
+	border-radius: 50%;
+	background-color: red;
+	z-index: 1;
+    position: relative;
+}
+
+.triangle{
+    height: 0;
+	width: 0;
+	z-index: 1;
+	position: relative;
+    border-style: solid;
+    border-width: 0 5px 20px 5px;
+    border-color: transparent transparent #ff0000 transparent;
+
+}
