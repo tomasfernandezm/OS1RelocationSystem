@@ -464,8 +464,7 @@ void Viewer::Run(){
         }
 
         if(menuSalir){
-        	// Termina, cierra OS1
-        	exit(0);
+        	salir = true;
         }
 
 

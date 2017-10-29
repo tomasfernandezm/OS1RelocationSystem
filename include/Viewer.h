@@ -190,6 +190,9 @@ public:
     /** Señal para que main abra un archivo de video.*/
     bool abrirVideo = false;
 
+    /** Señal para salir del sistema */
+    bool salir = false;
+
     /**
      * Período mínimo entre cuadros, en segundos.
      * El bucle main se asegura de demorar como mínimo este tiempo entre dos cuadros.
