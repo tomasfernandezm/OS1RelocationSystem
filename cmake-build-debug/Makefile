@@ -244,6 +244,33 @@ src/Initializer.cc.s:
 	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.s
 .PHONY : src/Initializer.cc.s
 
+src/JsonParser.o: src/JsonParser.cpp.o
+
+.PHONY : src/JsonParser.o
+
+# target to build an object file
+src/JsonParser.cpp.o:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/JsonParser.cpp.o
+.PHONY : src/JsonParser.cpp.o
+
+src/JsonParser.i: src/JsonParser.cpp.i
+
+.PHONY : src/JsonParser.i
+
+# target to preprocess a source file
+src/JsonParser.cpp.i:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/JsonParser.cpp.i
+.PHONY : src/JsonParser.cpp.i
+
+src/JsonParser.s: src/JsonParser.cpp.s
+
+.PHONY : src/JsonParser.s
+
+# target to generate assembly for a file
+src/JsonParser.cpp.s:
+	$(MAKE) -f CMakeFiles/ORB_SLAM2.dir/build.make CMakeFiles/ORB_SLAM2.dir/src/JsonParser.cpp.s
+.PHONY : src/JsonParser.cpp.s
+
 src/KeyFrame.o: src/KeyFrame.cc.o
 
 .PHONY : src/KeyFrame.o
@@ -863,6 +890,9 @@ help:
 	@echo "... src/Initializer.o"
 	@echo "... src/Initializer.i"
 	@echo "... src/Initializer.s"
+	@echo "... src/JsonParser.o"
+	@echo "... src/JsonParser.i"
+	@echo "... src/JsonParser.s"
 	@echo "... src/KeyFrame.o"
 	@echo "... src/KeyFrame.i"
 	@echo "... src/KeyFrame.s"

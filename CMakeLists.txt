@@ -52,6 +52,7 @@ include_directories(
         ${PROJECT_SOURCE_DIR}/Thirdparty/g2o
         ${EIGEN3_INCLUDE_DIR}
         ${Pangolin_INCLUDE_DIRS}
+        ${PROJECT_SOURCE_DIR}/Thirdparty/json
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -82,7 +83,8 @@ add_library(${PROJECT_NAME} SHARED
         src/Initializer.cc
         src/Video.cpp
         src/Viewer.cc
-        src/TcpSocketImageDecoder.cpp)
+        src/TcpSocketImageDecoder.cpp
+        src/JsonParser.cpp)
 
 target_link_libraries(${PROJECT_NAME}
         ${OpenCV_LIBS}

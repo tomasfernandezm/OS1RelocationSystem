@@ -56,6 +56,7 @@
 					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/toams/lib/Pangolin/include"/>
 					<Add directory="/home/toams/lib/Pangolin/build/src/include"/>
+					<Add directory="/home/toams/facultad/os1/Thirdparty/json"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/5"/>
@@ -92,6 +93,7 @@
 					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/toams/lib/Pangolin/include"/>
 					<Add directory="/home/toams/lib/Pangolin/build/src/include"/>
+					<Add directory="/home/toams/facultad/os1/Thirdparty/json"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/5"/>
@@ -128,6 +130,7 @@
 					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/toams/lib/Pangolin/include"/>
 					<Add directory="/home/toams/lib/Pangolin/build/src/include"/>
+					<Add directory="/home/toams/facultad/os1/Thirdparty/json"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/5"/>
@@ -164,6 +167,7 @@
 					<Add directory="/usr/local/include/eigen3"/>
 					<Add directory="/home/toams/lib/Pangolin/include"/>
 					<Add directory="/home/toams/lib/Pangolin/build/src/include"/>
+					<Add directory="/home/toams/facultad/os1/Thirdparty/json"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/local/include/opencv"/>
 					<Add directory="/usr/include/c++/5"/>
@@ -192,6 +196,9 @@
 			<Option target="ORB_SLAM2"/>
 		</Unit>
 		<Unit filename="/home/toams/facultad/os1/src/Initializer.cc">
+			<Option target="ORB_SLAM2"/>
+		</Unit>
+		<Unit filename="/home/toams/facultad/os1/src/JsonParser.cpp">
 			<Option target="ORB_SLAM2"/>
 		</Unit>
 		<Unit filename="/home/toams/facultad/os1/src/KeyFrame.cc">

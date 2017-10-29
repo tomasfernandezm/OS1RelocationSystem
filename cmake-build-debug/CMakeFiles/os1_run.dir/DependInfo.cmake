@@ -26,6 +26,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/eigen3"
   "/home/toams/lib/Pangolin/include"
   "/home/toams/lib/Pangolin/build/src/include"
+  "../Thirdparty/json"
   "/usr/local/include"
   "/usr/local/include/opencv"
   )

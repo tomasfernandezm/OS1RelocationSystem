@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/toams/facultad/os1/src/Frame.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Frame.cc.o"
   "/home/toams/facultad/os1/src/FrameDrawer.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/FrameDrawer.cc.o"
   "/home/toams/facultad/os1/src/Initializer.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.o"
+  "/home/toams/facultad/os1/src/JsonParser.cpp" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/JsonParser.cpp.o"
   "/home/toams/facultad/os1/src/KeyFrame.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o"
   "/home/toams/facultad/os1/src/KeyFrameDatabase.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/KeyFrameDatabase.cc.o"
   "/home/toams/facultad/os1/src/KeyFrameTriangulacion.cc" "/home/toams/facultad/os1/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/KeyFrameTriangulacion.cc.o"
@@ -51,6 +52,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/eigen3"
   "/home/toams/lib/Pangolin/include"
   "/home/toams/lib/Pangolin/build/src/include"
+  "../Thirdparty/json"
   "/usr/local/include"
   "/usr/local/include/opencv"
   )

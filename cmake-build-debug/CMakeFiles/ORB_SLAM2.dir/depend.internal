@@ -2029,6 +2029,10 @@ CMakeFiles/ORB_SLAM2.dir/src/Initializer.cc.o
  /usr/local/include/opencv2/videostab/ring_buffer.hpp
  /usr/local/include/opencv2/videostab/stabilizer.hpp
  /usr/local/include/opencv2/videostab/wobble_suppression.hpp
+CMakeFiles/ORB_SLAM2.dir/src/JsonParser.cpp.o
+ ../Thirdparty/json/json.hpp
+ ../include/JsonParser.h
+ /home/toams/facultad/os1/src/JsonParser.cpp
 CMakeFiles/ORB_SLAM2.dir/src/KeyFrame.cc.o
  ../Thirdparty/DBoW2/DBoW2/BowVector.h
  ../Thirdparty/DBoW2/DBoW2/FClass.h
@@ -9442,6 +9446,8 @@ CMakeFiles/ORB_SLAM2.dir/src/System.cc.o
  /usr/local/include/opencv2/videostab/stabilizer.hpp
  /usr/local/include/opencv2/videostab/wobble_suppression.hpp
 CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o
+ ..//include/JsonParser.h
+ ../Thirdparty/json/json.hpp
  ../include/TcpSocketImageDecoder.h
  /home/toams/facultad/os1/src/TcpSocketImageDecoder.cpp
  /home/toams/lib/boost/include/boost/array.hpp
