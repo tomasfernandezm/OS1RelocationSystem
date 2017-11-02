@@ -32,7 +32,6 @@
 #include <chrono>
 #include <unistd.h>
 #include <thread>
-#include <string>
 
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
@@ -40,14 +39,15 @@
 #include <System.h>
 #include <Viewer.h>
 #include <Tracking.h>
-#include <FrameDrawer.h>
-#include <Serializer.h>
 #include <Video.h>
 #include <include/TcpSocketImageDecoder.h>
 
 using namespace std;
+using namespace cv;
 
 ORB_SLAM2::System *Sistema;
+bool exitFlag = false;
+bool loadedMap = false;
 
 /**
  * Cambios hechos:
@@ -62,13 +62,13 @@ ORB_SLAM2::System *Sistema;
  *
  */
 
-cv::Mat processImage(cv::Mat initial, cv::Mat relocated, int factor);
-
 void loadMap(char *rutaMapa);
 
 cv::Mat getMatFromSocket();
 
 void sendLocation(std::string host, int port, std::string message);
+
+void operate(const Mat &im, char* mapRoute);
 
 int main(int argc, char **argv) {
 
@@ -88,63 +88,72 @@ int main(int argc, char **argv) {
     // Puntero global al sistema singleton
     Sistema = &SLAM;
 
-    ORB_SLAM2::Viewer *visor = SLAM.mpViewer;
-
     // Arranca el hilo de Video
     ORB_SLAM2::Video video;
     new thread(&ORB_SLAM2::Video::Run, &video);
 
-    cout << "Recibiendo imagen" << endl;
-    cv::Mat img = getMatFromSocket();
-    cout << "Imagen recibida" << endl;
-
-    bool hasSentMatrix = false;
-    bool mapaCargado = false;
     cv::Mat initialMatrix;
+    while(!exitFlag) {
+        cout << "Recibiendo imagen" << endl;
+        cv::Mat img = getMatFromSocket();
+        cout << "Imagen recibida" << endl;
+        operate(img, "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap");
+    }
+
+    cout << "Invocando shutdown." << endl;
+
+    exit(0);
+    
+    /*
+     * Stops the system, does not work.
+     *
+     * SLAM.Shutdown();
+     * cout << "Terminado." << endl;
+     * return 0;
+     */
+}
+
+void operate(const Mat &im, char* mapRoute){
+
     bool operate = true;
-
+    bool mapaCargado = false;
     while (operate) {
-
         // Pass the image to the SLAM system
-        if (SLAM.mpTracker->mState == 2
-            && SLAM.mpTracker->mbOnlyTracking && !hasSentMatrix) {
-            hasSentMatrix = !hasSentMatrix;
-            cv::Mat relocationMatrix = SLAM.mpTracker->mCurrentFrame.mTcw.inv();
+        if ((*Sistema).mpTracker->mState == 2
+            && (*Sistema).mpTracker->mbOnlyTracking) {
+            cout << "operando" << endl;
+            cv::Mat relocationMatrix = (*Sistema).mpTracker->mCurrentFrame.mTcw.inv();
             cout << "El vector de traslación es: " << endl;
             /**
              * vector traslación = matriz inicial * (cuarta columna de matriz de relocalización)
              */
-            cv::Mat vector = initialMatrix * (relocationMatrix.col(3)).rowRange(0, 2);
+            cv::Mat vector = 1 * relocationMatrix;
             cout << vector << endl;
 
-            float x = vector.at<float>(0, 0);
-            float y = vector.at<float>(1, 0);
-            float z = vector.at<float>(2, 0);
+            float x = vector.at<float>(0, 3);
+            float y = vector.at<float>(1, 3);
+            float z = vector.at<float>(2, 3);
 
             std::string str = to_string(x) + " " + to_string(y) + " " + to_string(z);
             /* Escribir respuesta acá */
             sendLocation("localhost", 7001, str);
             /* Coordenada Z para adelante, X para la derecha e Y para abajo*/
+            operate = false;
         }
 
-        SLAM.TrackMonocular(img, (double) video.posCuadro);
+        (*Sistema).TrackMonocular(im, 1);
 
         // Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
-        if (!mapaCargado) {
-            loadMap("/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap");
-            mapaCargado = true;
+        if (!loadedMap) {
+            cout << "Cargando mapa" << endl;
+            loadMap(mapRoute);
+            loadedMap = true;
         }
-        if(visor->salir) operate = !operate;
+        if((*Sistema).mpViewer->salir) {
+            exitFlag = true;
+            cout << "Quiero salir" << endl;
+        }
     }
-    cout << "Invocando shutdown." << endl;
-
-    exit(0);
-    // Stop all threads
-    SLAM.Shutdown(); /** No sirve de nada */
-
-    cout << "Terminado." << endl;
-
-    return 0;
 }
 
 void loadMap(char *rutaMapa) {

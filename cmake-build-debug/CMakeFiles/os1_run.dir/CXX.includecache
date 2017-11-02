@@ -547,8 +547,6 @@ unistd.h
 -
 thread
 -
-string
--
 opencv2/core.hpp
 -
 opencv2/videoio.hpp
@@ -558,10 +556,6 @@ System.h
 Viewer.h
 -
 Tracking.h
--
-FrameDrawer.h
--
-Serializer.h
 -
 Video.h
 -

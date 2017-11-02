@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-..//include/JsonParser.h
-json.hpp
--
-
 ..//include/TcpSocketImageDecoder.h
 ctime
 -
@@ -1483,12 +1479,8 @@ boost/thread.hpp
 -
 
 /home/toams/facultad/os1/src/TcpSocketImageDecoder.cpp
-include/JsonParser.h
--
 TcpSocketImageDecoder.h
 /home/toams/facultad/os1/src/TcpSocketImageDecoder.h
-json.hpp
--
 
 /home/toams/facultad/os1/src/Tracking.cc
 Tracking.h
@@ -1553,8 +1545,6 @@ unistd.h
 -
 thread
 -
-string
--
 opencv2/core.hpp
 -
 opencv2/videoio.hpp
@@ -1564,10 +1554,6 @@ System.h
 Viewer.h
 -
 Tracking.h
--
-FrameDrawer.h
--
-Serializer.h
 -
 Video.h
 -
