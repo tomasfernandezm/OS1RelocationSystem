@@ -9,6 +9,6 @@ server.get('/', function(req, res) {
         y: 350
     });
 })
-server.listen('3000', function() {
+server.listen('3001', function() {
     console.log('Express is listening on port 3000');
 });
