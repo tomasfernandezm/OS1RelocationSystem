@@ -94,8 +94,10 @@ int main(int argc, char **argv) {
         Mat img = getMatFromSocket();
         cout << "Imagen recibida" << endl;
         Mat relocMatrix = operate(img, mapRoute);
+        cout << relocMatrix << endl;
         Mat displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
         string message = getVectorAsString(displacementVector);
+        cout << "The resultant vector is: " + message << endl;
         sendLocation("localhost", 7001, message);
     }
 
@@ -110,12 +112,12 @@ Mat operate(const Mat &image, char* mapRoute){
     Mat result;
     while (operate) {
         // Pass the image to the SLAM system
+        (*Sistema).TrackMonocular(image, 1);
+
         if ((*Sistema).mpTracker->mState == 2 && (*Sistema).mpTracker->mbOnlyTracking) {
             result = (*Sistema).mpTracker->mCurrentFrame.mTcw.inv();
             operate = false;
         }
-
-        (*Sistema).TrackMonocular(image, 1);
 
         // Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
         if (!loadedMap) {
@@ -135,6 +137,7 @@ cv::Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix,
                           const Mat &initialVector, const double factor){
     Mat relocVector = initialMatrix * (relocMatrix.col(3));
     Mat resultantVector = relocVector - initialVector;
+    cout << resultantVector << endl;
     resultantVector = resultantVector * factor;
     return resultantVector;
 }
@@ -145,9 +148,11 @@ string getVectorAsString(const Mat &vector){
     return to_string(x) + " " + to_string(z);
 }
 
-Mat loadInitialMatrix(char* initialMatrixLocation, char* mapRoute){
-    Mat image = imread(initialMatrixLocation, CV_LOAD_IMAGE_GRAYSCALE);
-    return operate(image, mapRoute);
+Mat loadInitialMatrix(char* initialImageLocation, char* mapRoute){
+    Mat image = imread(initialImageLocation, CV_LOAD_IMAGE_GRAYSCALE);
+    Mat result = operate(image, mapRoute);
+    cout << result << endl;
+    return result;
 }
 
 void loadMap(char *rutaMapa) {
