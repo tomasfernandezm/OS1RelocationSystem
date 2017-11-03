@@ -67,33 +67,33 @@ Mat getMatFromSocket();
 void sendLocation(std::string host, int port, std::string message);
 Mat operate(const Mat &image, char* mapRoute);
 string getVectorAsString(const Mat &vector);
+Mat loadInitialMatrix(char* initialImageLocation, char* mapRoute);
 Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix, const Mat &initialVector, const double factor);
 
 int main(int argc, char **argv) {
 
-    cout << "Iniciando ORB-SLAM.  Línea de comando:" << endl
-         << "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml"
-         << endl;
-
     const char *rutaConfiguracionORB = "/home/toams/facultad/os1/webcamNacho.yaml";
     const char *rutaVocabulario = "/home/toams/facultad/os1/orbVoc.bin";
+    char *mapRoute = "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap";
+    char *initialImageLocation = "/home/toams/facultad/os1/resource/config/origin.jpg";
     const double meterFactor = 44.66538924;
 
+    cout << "Llegó" << endl;
     ORB_SLAM2::System SLAM(rutaVocabulario, rutaConfiguracionORB, ORB_SLAM2::System::MONOCULAR, true);
-
+    cout << "No llegó" << endl;
     Sistema = &SLAM;
 
     ORB_SLAM2::Video video;
     new thread(&ORB_SLAM2::Video::Run, &video);
 
-    cv::Mat initialMatrix;
+    cv::Mat initialMatrix = loadInitialMatrix(initialImageLocation, mapRoute);
     cv::Mat initialVector = initialMatrix * initialMatrix.col(3);
 
     while(!exitFlag) {
         cout << "Recibiendo imagen" << endl;
         Mat img = getMatFromSocket();
         cout << "Imagen recibida" << endl;
-        Mat relocMatrix = operate(img, "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap");
+        Mat relocMatrix = operate(img, mapRoute);
         Mat displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
         string message = getVectorAsString(displacementVector);
         sendLocation("localhost", 7001, message);
@@ -107,7 +107,6 @@ int main(int argc, char **argv) {
 Mat operate(const Mat &image, char* mapRoute){
 
     bool operate = true;
-    bool mapaCargado = false;
     Mat result;
     while (operate) {
         // Pass the image to the SLAM system
@@ -144,6 +143,11 @@ string getVectorAsString(const Mat &vector){
     float x = vector.at<float>(0, 0);
     float z = vector.at<float>(2, 0);
     return to_string(x) + " " + to_string(z);
+}
+
+Mat loadInitialMatrix(char* initialMatrixLocation, char* mapRoute){
+    Mat image = imread(initialMatrixLocation, CV_LOAD_IMAGE_GRAYSCALE);
+    return operate(image, mapRoute);
 }
 
 void loadMap(char *rutaMapa) {
