@@ -16,8 +16,9 @@
 /*Left va entre 225 y 270*/
 /*Bottom va desde 110 a 780 */
 /* 1 mt son 15px*/
-/*Parametro "left" varia. (210px + (coordenada * 15)) */
-/* Parametro "bottom" varia. (110px + (coordenada * 15)) */
+/*Parametro "left" varia. (247px + (coordenada (por ahora la coordenada viene negativa cerca de 0 
+y hay que pasarla a mts) * 15)) */
+/* Parametro "bottom" varia. (370px (el 0, 0) + (coordenada (para convertir la coord a mts se multiplica * 45)  * 15)) */
 
 .point{
 	height: 10px;

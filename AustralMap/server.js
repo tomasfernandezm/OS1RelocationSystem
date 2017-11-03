@@ -10,5 +10,5 @@ server.get('/', function(req, res) {
     });
 })
 server.listen('3001', function() {
-    console.log('Express is listening on port 3000');
+    console.log('Express is listening on port 3001');
 });

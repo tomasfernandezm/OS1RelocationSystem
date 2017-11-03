@@ -7,8 +7,8 @@ var storage = multer.memoryStorage();
 
 var upload = multer({ storage : storage});
 var client = new net.Socket();
-
-var coordinates;
+const ORIGIN_X =  240;
+const ORIGIN_Y = 370;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,7 +26,9 @@ router.post('/photo',upload.single('imageUpload'), function(req, res){
             var coor = new Buffer(data, 'base64').toString("ascii");
             console.log(coor);
             coordinates = coor.split(" ");
-			      res.render('map', {x: coordinates[0], y: coordinates[2]});
+            const x = Math.floor(coordinates[0]*15 + ORIGIN_X);
+            const y = (coordinates[2]*15 + ORIGIN_Y);
+			      res.render('map', {x: x, y: y});
             server.close();
         });
     });
