@@ -63,12 +63,11 @@ bool loadedMap = false;
  */
 
 void loadMap(char *rutaMapa);
-
-cv::Mat getMatFromSocket();
-
+Mat getMatFromSocket();
 void sendLocation(std::string host, int port, std::string message);
-
-void operate(const Mat &im, char* mapRoute);
+Mat operate(const Mat &image, char* mapRoute);
+string getVectorAsString(const Mat &vector);
+Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix, const Mat &initialVector, const double factor);
 
 int main(int argc, char **argv) {
 
@@ -76,72 +75,48 @@ int main(int argc, char **argv) {
          << "os1 [archivo de configuración yaml [ruta al archivo de video]]\nSin argumentos para usar la webcam, con configuración en webcam.yaml"
          << endl;
 
-    // Parámetros de la línea de comando
-
     const char *rutaConfiguracionORB = "/home/toams/facultad/os1/webcamNacho.yaml";
     const char *rutaVocabulario = "/home/toams/facultad/os1/orbVoc.bin";
+    const double meterFactor = 44.66538924;
 
-    // Inicializa el sistema SLAM.
-    // Mi versión de archivo binario con el vocabulario, que carga mucho más rápido porque evita el análisis sintáctico.
     ORB_SLAM2::System SLAM(rutaVocabulario, rutaConfiguracionORB, ORB_SLAM2::System::MONOCULAR, true);
 
-    // Puntero global al sistema singleton
     Sistema = &SLAM;
 
-    // Arranca el hilo de Video
     ORB_SLAM2::Video video;
     new thread(&ORB_SLAM2::Video::Run, &video);
 
     cv::Mat initialMatrix;
+    cv::Mat initialVector = initialMatrix * initialMatrix.col(3);
+
     while(!exitFlag) {
         cout << "Recibiendo imagen" << endl;
-        cv::Mat img = getMatFromSocket();
+        Mat img = getMatFromSocket();
         cout << "Imagen recibida" << endl;
-        operate(img, "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap");
+        Mat relocMatrix = operate(img, "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap");
+        Mat displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
+        string message = getVectorAsString(displacementVector);
+        sendLocation("localhost", 7001, message);
     }
 
     cout << "Invocando shutdown." << endl;
-
     exit(0);
-    
-    /*
-     * Stops the system, does not work.
-     *
-     * SLAM.Shutdown();
-     * cout << "Terminado." << endl;
-     * return 0;
-     */
+
 }
 
-void operate(const Mat &im, char* mapRoute){
+Mat operate(const Mat &image, char* mapRoute){
 
     bool operate = true;
     bool mapaCargado = false;
+    Mat result;
     while (operate) {
         // Pass the image to the SLAM system
-        if ((*Sistema).mpTracker->mState == 2
-            && (*Sistema).mpTracker->mbOnlyTracking) {
-            cout << "operando" << endl;
-            cv::Mat relocationMatrix = (*Sistema).mpTracker->mCurrentFrame.mTcw.inv();
-            cout << "El vector de traslación es: " << endl;
-            /**
-             * vector traslación = matriz inicial * (cuarta columna de matriz de relocalización)
-             */
-            cv::Mat vector = 1 * relocationMatrix;
-            cout << vector << endl;
-
-            float x = vector.at<float>(0, 3);
-            float y = vector.at<float>(1, 3);
-            float z = vector.at<float>(2, 3);
-
-            std::string str = to_string(x) + " " + to_string(y) + " " + to_string(z);
-            /* Escribir respuesta acá */
-            sendLocation("localhost", 7001, str);
-            /* Coordenada Z para adelante, X para la derecha e Y para abajo*/
+        if ((*Sistema).mpTracker->mState == 2 && (*Sistema).mpTracker->mbOnlyTracking) {
+            result = (*Sistema).mpTracker->mCurrentFrame.mTcw.inv();
             operate = false;
         }
 
-        (*Sistema).TrackMonocular(im, 1);
+        (*Sistema).TrackMonocular(image, 1);
 
         // Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
         if (!loadedMap) {
@@ -154,6 +129,21 @@ void operate(const Mat &im, char* mapRoute){
             cout << "Quiero salir" << endl;
         }
     }
+    return result;
+}
+
+cv::Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix,
+                          const Mat &initialVector, const double factor){
+    Mat relocVector = initialMatrix * (relocMatrix.col(3));
+    Mat resultantVector = relocVector - initialVector;
+    resultantVector = resultantVector * factor;
+    return resultantVector;
+}
+
+string getVectorAsString(const Mat &vector){
+    float x = vector.at<float>(0, 0);
+    float z = vector.at<float>(2, 0);
+    return to_string(x) + " " + to_string(z);
 }
 
 void loadMap(char *rutaMapa) {

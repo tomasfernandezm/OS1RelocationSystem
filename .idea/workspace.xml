@@ -13,15 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10990da5-417d-4412-9d0c-364b606c853e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/main.cc.o" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/TcpSocketImageDecoder.cpp.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/main.cc.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/src/main.cc.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/os1_run.dir/src/main.cc.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/os1_run.dir/src/main.cc.o" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/libORB_SLAM2.so" afterPath="$PROJECT_DIR$/lib/libORB_SLAM2.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/os1_run" afterPath="$PROJECT_DIR$/src/os1_run" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/ORB_SLAM2.dir/depend.make" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cc" afterPath="$PROJECT_DIR$/src/main.cc" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -37,14 +33,14 @@
       <file leaf-file-name="main.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state relative-caret-position="539">
+              <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding>
                 <element signature="e#1122#1141#0" expanded="true" />
-                <element signature="e#3485#4992#0" expanded="false" />
-                <element signature="e#4994#6503#0" expanded="false" />
-                <element signature="e#6505#6599#0" expanded="false" />
-                <element signature="e#6601#6747#0" expanded="false" />
+                <element signature="e#4382#4724#0" expanded="false" />
+                <element signature="e#4896#6405#0" expanded="false" />
+                <element signature="e#6407#6501#0" expanded="false" />
+                <element signature="e#6503#6649#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -238,7 +234,7 @@
             <path>
               <item name="ORB_SLAM2" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="os1" type="462c0819:PsiDirectoryNode" />
-              <item name="socket" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -355,12 +351,13 @@
       <workItem from="1509459901294" duration="4365000" />
       <workItem from="1509628512463" duration="728000" />
       <workItem from="1509631909613" duration="1041000" />
-      <workItem from="1509637016212" duration="3197000" />
+      <workItem from="1509637016212" duration="4558000" />
+      <workItem from="1509745620371" duration="2335000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111580000" />
+    <option name="totallyTimeSpent" value="115276000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1315" height="780" extended-state="6" />
@@ -368,7 +365,6 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1515613" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23076923" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2822823" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
@@ -379,6 +375,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35435435" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23076923" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -774,14 +771,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+        <state relative-caret-position="539">
+          <caret line="105" column="0" lean-forward="true" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
             <element signature="e#1122#1141#0" expanded="true" />
-            <element signature="e#3485#4992#0" expanded="false" />
-            <element signature="e#4994#6503#0" expanded="false" />
-            <element signature="e#6505#6599#0" expanded="false" />
-            <element signature="e#6601#6747#0" expanded="false" />
+            <element signature="e#4382#4724#0" expanded="false" />
+            <element signature="e#4896#6405#0" expanded="false" />
+            <element signature="e#6407#6501#0" expanded="false" />
+            <element signature="e#6503#6649#0" expanded="false" />
           </folding>
         </state>
       </provider>
