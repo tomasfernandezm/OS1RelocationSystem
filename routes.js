@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
 
 /* POST photo */
 router.post('/photo',upload.single('imageUpload'), function(req, res){
+
     var uploadedFile = req.file.buffer;
     console.log(uploadedFile);
 

@@ -3,13 +3,13 @@
 .content{
 	height: 800px;
 	width: 480px;
-	margin: auto;
+
 }
 
 .img{
 	height: 800px;
 	width: 480px;
-	background-image: url(mapa-PA.png);
+	background-image: url("mapa-PA.png");
 	z-index: 0;
 }
 
@@ -26,7 +26,7 @@ y hay que pasarla a mts) * 15)) */
 	border-radius: 50%;
 	background-color: red;
 	z-index: 1;
-    position: relative;
+    position: absolute;
 }
 
 .triangle{

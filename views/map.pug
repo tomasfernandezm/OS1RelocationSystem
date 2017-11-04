@@ -1,12 +1,22 @@
 doctype html
 html
   head
-    link(rel='stylesheet', type='text/css', href='../AustralMap/index.css')
-  body
+    style
+        include index.css
+          
+    //- link(rel='stylesheet', type='text/css', href='index.css')
+  body 
     .content
       .img
       #point.point
-    p#x #{x}
-    p#y #{y}
-    script(src='../routes.js')
+    p#style.left #{x}
+    p#style.bottom #{y}
+    script.
+        console.log('script called');
+        console.log('x: '+!{x});
+        console.log(document.getElementById("point"));
+        document.getElementById("point").style.left = !{x} + "px";
+        document.getElementById("point").style.top = !{y} + "px"; 
+    //- script
+    //-   include ../app.js
 
