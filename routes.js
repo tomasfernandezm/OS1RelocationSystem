@@ -43,9 +43,12 @@ router.post('/photo',upload.single('imageUpload'), function(req, res){
     client.connect(port, ip, function() {
         console.log('Connected');
         console.log('Writing...');
-        client.write(buffer);
-        console.log('Wrote !!');
-        client.end();
+		console.log(buffer.byteLength);
+        client.write(buffer, function (err){
+			console.log(err);
+			console.log('Wrote !!');
+        	client.end();
+		});
     });
 });
 
