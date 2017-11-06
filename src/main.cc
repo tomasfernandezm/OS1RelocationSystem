@@ -48,6 +48,7 @@ using namespace cv;
 ORB_SLAM2::System *Sistema;
 bool exitFlag = false;
 bool loadedMap = false;
+bool bogusImage = false;
 
 /**
  * Cambios hechos:
@@ -92,10 +93,16 @@ int main(int argc, char **argv) {
     while(!exitFlag) {
         cout << "Recibiendo imagen" << endl;
         Mat img = getMatFromSocket();
+	    if(!img.data) cout << "La imagen es corrupt" << endl;
         cout << "Imagen recibida" << endl;
         Mat relocMatrix = operate(img, mapRoute);
         cout << relocMatrix << endl;
-        Mat displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
+        Mat displacementVector;
+        if(!bogusImage){
+            displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
+        }else{
+            displacementVector = relocMatrix;
+        }
         string message = getVectorAsString(displacementVector);
         cout << "The resultant vector is: " + message << endl;
         sendLocation("localhost", 7001, message);
@@ -110,13 +117,15 @@ Mat operate(const Mat &image, char* mapRoute){
 
     bool operate = true;
     Mat result;
-    while (operate) {
+    int maxFrames = 20;
+    while (operate && maxFrames != 0) {
         // Pass the image to the SLAM system
         (*Sistema).TrackMonocular(image, 1);
 
         if ((*Sistema).mpTracker->mState == 2 && (*Sistema).mpTracker->mbOnlyTracking) {
             result = (*Sistema).mpTracker->mCurrentFrame.mTcw.inv();
             operate = false;
+            bogusImage = false;
         }
 
         // Ver si hay señal para cargar el mapa, que debe hacerse desde este thread
@@ -129,6 +138,14 @@ Mat operate(const Mat &image, char* mapRoute){
             exitFlag = true;
             cout << "Quiero salir" << endl;
         }
+        maxFrames--;
+    }
+    if(maxFrames == 0){
+        result = Mat::zeros(3, 1, CV_32F);
+        result.at<float>(0, 0) = 0;
+        result.at<float>(1, 0) = -1;
+        result.at<float>(2, 0) = 0;
+        bogusImage = true;
     }
     return result;
 }

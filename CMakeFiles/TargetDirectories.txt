@@ -1,0 +1,4 @@
+/home/toams/facultad/os1/CMakeFiles/edit_cache.dir
+/home/toams/facultad/os1/CMakeFiles/rebuild_cache.dir
+/home/toams/facultad/os1/CMakeFiles/os1_run.dir
+/home/toams/facultad/os1/CMakeFiles/ORB_SLAM2.dir
