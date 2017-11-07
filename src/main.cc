@@ -100,6 +100,7 @@ int main(int argc, char **argv) {
         Mat displacementVector;
         if(!bogusImage){
             displacementVector = calculateLocation(initialMatrix, relocMatrix, initialVector, meterFactor);
+            displacementVector.at<float>(1, 0) = 1;
         }else{
             displacementVector = relocMatrix;
         }
@@ -161,8 +162,9 @@ cv::Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix,
 
 string getVectorAsString(const Mat &vector){
     float x = vector.at<float>(0, 0);
+    float y = vector.at<float>(1, 0);
     float z = vector.at<float>(2, 0);
-    return to_string(x) + " " + to_string(z);
+    return to_string(x) + " " + to_string(y) + " " + to_string(z);
 }
 
 Mat loadInitialMatrix(char* initialImageLocation, char* mapRoute){
