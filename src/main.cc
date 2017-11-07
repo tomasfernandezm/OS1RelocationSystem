@@ -73,9 +73,9 @@ Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix, const Ma
 
 int main(int argc, char **argv) {
 
-    const char *rutaConfiguracionORB = "/home/toams/facultad/os1/webcamNacho.yaml";
-    const char *rutaVocabulario = "/home/toams/facultad/os1/orbVoc.bin";
-    char *mapRoute = "/home/toams/facultad/os1/Mapa_Pasillo_A10.osMap";
+    const char *rutaConfiguracionORB = "/home/toams/facultad/os1/resource/calibrations/webcamNacho.yaml";
+    const char *rutaVocabulario = "/home/toams/facultad/os1/resource/vocabulary/orbVoc.bin";
+    char *mapRoute = "/home/toams/facultad/os1/resource/maps/Mapa_Pasillo_A10.osMap";
     char *initialImageLocation = "/home/toams/facultad/os1/resource/config/origin.jpg";
     const double meterFactor = 44.66538924;
 

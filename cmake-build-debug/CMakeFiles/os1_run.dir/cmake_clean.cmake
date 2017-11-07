@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/os1_run.dir/src/main.cc.o"
-  "../src/os1_run.pdb"
-  "../src/os1_run"
+  "../build/os1_run.pdb"
+  "../build/os1_run"
 )
 
 # Per-language clean rules from dependency scanning.

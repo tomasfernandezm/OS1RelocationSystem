@@ -88,55 +88,55 @@ os1_run_OBJECTS = \
 # External object files for target os1_run
 os1_run_EXTERNAL_OBJECTS =
 
-../src/os1_run: CMakeFiles/os1_run.dir/src/main.cc.o
-../src/os1_run: CMakeFiles/os1_run.dir/build.make
-../src/os1_run: ../lib/libORB_SLAM2.so
-../src/os1_run: /usr/local/lib/libopencv_dnn.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_ml.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_objdetect.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_shape.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_stitching.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_superres.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_videostab.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_calib3d.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_features2d.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_flann.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_highgui.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_photo.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_video.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_videoio.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_imgcodecs.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_imgproc.so.3.3.0
-../src/os1_run: /usr/local/lib/libopencv_core.so.3.3.0
-../src/os1_run: /home/toams/lib/Pangolin/build/src/libpangolin.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libGLU.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libGL.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libGLEW.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libSM.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libICE.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libX11.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libXext.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libdc1394.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libavcodec.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libavformat.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libavutil.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libswscale.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libpng.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libz.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libjpeg.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libtiff.so
-../src/os1_run: /usr/lib/x86_64-linux-gnu/libIlmImf.so
-../src/os1_run: ../Thirdparty/DBoW2/lib/libDBoW2.so
-../src/os1_run: ../Thirdparty/g2o/lib/libg2o.so
-../src/os1_run: /home/toams/lib/boost/lib/libboost_serialization.so
-../src/os1_run: /home/toams/lib/boost/lib/libboost_system.so.1.64.0
-../src/os1_run: CMakeFiles/os1_run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/toams/facultad/os1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../src/os1_run"
+../build/os1_run: CMakeFiles/os1_run.dir/src/main.cc.o
+../build/os1_run: CMakeFiles/os1_run.dir/build.make
+../build/os1_run: ../lib/libORB_SLAM2.so
+../build/os1_run: /usr/local/lib/libopencv_dnn.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_ml.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_objdetect.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_shape.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_stitching.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_superres.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_videostab.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_calib3d.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_features2d.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_flann.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_highgui.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_photo.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_video.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_videoio.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_imgcodecs.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_imgproc.so.3.3.0
+../build/os1_run: /usr/local/lib/libopencv_core.so.3.3.0
+../build/os1_run: /home/toams/lib/Pangolin/build/src/libpangolin.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libGLU.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libGL.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libGLEW.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libSM.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libICE.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libX11.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libXext.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libdc1394.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libavcodec.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libavformat.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libavutil.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libswscale.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libpng.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libz.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libjpeg.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libtiff.so
+../build/os1_run: /usr/lib/x86_64-linux-gnu/libIlmImf.so
+../build/os1_run: ../Thirdparty/DBoW2/lib/libDBoW2.so
+../build/os1_run: ../Thirdparty/g2o/lib/libg2o.so
+../build/os1_run: /home/toams/lib/boost/lib/libboost_serialization.so
+../build/os1_run: /home/toams/lib/boost/lib/libboost_system.so.1.64.0
+../build/os1_run: CMakeFiles/os1_run.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/toams/facultad/os1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../build/os1_run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/os1_run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/os1_run.dir/build: ../src/os1_run
+CMakeFiles/os1_run.dir/build: ../build/os1_run
 
 .PHONY : CMakeFiles/os1_run.dir/build
 

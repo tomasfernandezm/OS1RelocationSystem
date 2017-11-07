@@ -100,7 +100,7 @@ target_link_libraries(${PROJECT_NAME}
 
 
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/src)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/build)
 
 add_executable(os1_run
         src/main.cc)

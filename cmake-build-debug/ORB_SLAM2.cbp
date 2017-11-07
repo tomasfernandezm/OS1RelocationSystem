@@ -38,8 +38,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="os1_run">
-				<Option output="/home/toams/facultad/os1/src/os1_run" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/toams/facultad/os1/src"/>
+				<Option output="/home/toams/facultad/os1/build/os1_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/toams/facultad/os1/build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -75,8 +75,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="os1_run/fast">
-				<Option output="/home/toams/facultad/os1/src/os1_run" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/toams/facultad/os1/src"/>
+				<Option output="/home/toams/facultad/os1/build/os1_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/toams/facultad/os1/build"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
