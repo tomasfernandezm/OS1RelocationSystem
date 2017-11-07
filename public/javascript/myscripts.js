@@ -1,3 +1,10 @@
+function loader(){
+    document.getElementById('imgPreview').setAttribute('hidden', 'hidden');
+    document.getElementById('loader').style.visibility = 'visible';
+}
+
+
+
 function readURL(input) {
 
     if (input.files && input.files[0]) {

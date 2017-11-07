@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 
 /* POST photo */
 router.post('/photo',upload.single('imageUpload'), function(req, res){
-    
     var uploadedFile = req.file.buffer;
     console.log(uploadedFile);
 
@@ -28,8 +27,13 @@ router.post('/photo',upload.single('imageUpload'), function(req, res){
             console.log(coor);
             coordinates = coor.split(" ");
             const x = Math.floor(coordinates[0]*15 + ORIGIN_X);
-            const y = Math.floor(coordinates[1]*15 + ORIGIN_Y);
-			      res.render('map', {x: x, y: y});
+            const y = Math.floor(coordinates[2]*15 + ORIGIN_Y);
+            if(coordinates[1] != '-1'){
+                res.render('map', {x: x, y: y});
+            }
+			else {
+                res.render('error');
+            }      
             server.close();
         });
     });

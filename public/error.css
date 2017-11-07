@@ -1,0 +1,47 @@
+.navbar{
+  background-color: #FF3067;
+  border-color: #FF3067;
+
+}
+
+.navbar-inverse {
+  vertical-align: middle !important;
+    align-items: center !important;
+    border-radius: 0;
+    height: 60px;
+}
+
+.navbar-brand{
+    color: white !important;
+    cursor: default;
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    font-family: 'Dosis', sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+
+.error{
+  text-align: center;
+  font-size: 2em;
+  font-family: helvetica, sans-serif;
+  margin: 20px 0 20px 0;
+}
+
+.btn-error{
+  width: 100%
+}
+
+.btn{
+  color: white;
+  background-color: #FF3067;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #BD244C; 
+}
+
+
+
