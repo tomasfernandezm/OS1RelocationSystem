@@ -28,7 +28,7 @@ router.post('/photo',upload.single('imageUpload'), function(req, res){
             coordinates = coor.split(" ");
             const x = Math.floor(coordinates[0]*15 + ORIGIN_X);
             const y = Math.floor(coordinates[2]*15 + ORIGIN_Y);
-            if(coordinates[1] != '-1'){
+            if(coordinates[1] != -1){
                 res.render('map', {x: x, y: y});
             }
 			else {
