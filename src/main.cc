@@ -41,9 +41,11 @@
 #include <Tracking.h>
 #include <Video.h>
 #include <include/TcpSocketImageDecoder.h>
+#include <json.hpp>
 
 using namespace std;
 using namespace cv;
+using json = nlohmann::json;
 
 ORB_SLAM2::System *Sistema;
 bool exitFlag = false;
@@ -63,21 +65,25 @@ bool bogusImage = false;
  *
  */
 
-void loadMap(char *rutaMapa);
+void loadMap(string rutaMapa);
 Mat getMatFromSocket();
 void sendLocation(std::string host, int port, std::string message);
-Mat operate(const Mat &image, char* mapRoute);
+Mat operate(const Mat &image, const string &mapRoute);
 string getVectorAsString(const Mat &vector);
-Mat loadInitialMatrix(char* initialImageLocation, char* mapRoute);
-Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix, const Mat &initialVector, const double factor);
+Mat loadInitialMatrix(string initialImageLocation, string MapRoute);
+Mat calculateLocation(const Mat &initialMatrix, const Mat &relocMatrix, const Mat &initialVector, double factor);
 
 int main(int argc, char **argv) {
 
-    const char *rutaConfiguracionORB = "/home/toams/facultad/os1/resource/calibrations/webcamNacho.yaml";
-    const char *rutaVocabulario = "/home/toams/facultad/os1/resource/vocabulary/orbVoc.bin";
-    char *mapRoute = "/home/toams/facultad/os1/resource/maps/Mapa_Pasillo_A10.osMap";
-    char *initialImageLocation = "/home/toams/facultad/os1/resource/config/origin.jpg";
-    const double meterFactor = 44.66538924;
+    ifstream ifs("/home/toams/facultad/OS1RelocationSystem/config.json");
+    json jsonConfig = json::parse(ifs);
+
+
+    const string rutaConfiguracionORB = jsonConfig["ORBConfigRoute"];
+    const string rutaVocabulario = jsonConfig["VocRoute"];
+    const string mapRoute = jsonConfig["MapRoute"];
+    const string initialImageLocation = jsonConfig["InitialImageLocation"];
+    const double meterFactor = jsonConfig["MeterFactor"];
 
     cout << "Llegó" << endl;
     ORB_SLAM2::System SLAM(rutaVocabulario, rutaConfiguracionORB, ORB_SLAM2::System::MONOCULAR, true);
@@ -117,7 +123,7 @@ int main(int argc, char **argv) {
 
 }
 
-Mat operate(const Mat &image, char* mapRoute){
+Mat operate(const Mat &image, const string &mapRoute){
 
     bool operate = true;
     Mat result;
@@ -170,14 +176,14 @@ string getVectorAsString(const Mat &vector){
     return to_string(x) + " " + to_string(y) + " " + to_string(z);
 }
 
-Mat loadInitialMatrix(char* initialImageLocation, char* mapRoute){
+Mat loadInitialMatrix(const string initialImageLocation, const string mapRoute){
     Mat image = imread(initialImageLocation, CV_LOAD_IMAGE_GRAYSCALE);
     Mat result = operate(image, mapRoute);
     cout << result << endl;
     return result;
 }
 
-void loadMap(char *rutaMapa) {
+void loadMap(const string rutaMapa) {
     (*Sistema).mpViewer->cargarMapa = false;
 
     (*Sistema).mpTracker->mState = ORB_SLAM2::Tracking::NOT_INITIALIZED;
@@ -200,9 +206,8 @@ void loadMap(char *rutaMapa) {
 
     //std::string nombreArchivo(charchivo);
     //nombreArchivo.pop_back();	// Quita el \n final
-    std::string nombreArchivo(rutaMapa);
-    cout << "Abriendo archivo " << nombreArchivo << endl;
-    (*Sistema).serializer->mapLoad(nombreArchivo);
+    cout << "Abriendo archivo " << rutaMapa << endl;
+    (*Sistema).serializer->mapLoad(rutaMapa);
     cout << "Mapa cargado." << endl;
 
 

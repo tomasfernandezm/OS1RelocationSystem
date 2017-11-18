@@ -1,0 +1,5 @@
+{"ORBConfigRoute":"/home/toams/facultad/OS1RelocationSystem/resource/calibrations/webcamNacho.yaml",
+ "VocRoute":"/home/toams/facultad/OS1RelocationSystem/resource/vocabulary/orbVoc.bin",
+ "MapRoute":"/home/toams/facultad/OS1RelocationSystem/resource/maps/Mapa_Pasillo_A10.osMap",
+ "InitialImageLocation":"/home/toams/facultad/OS1RelocationSystem/resource/config/origin.jpg",
+ "MeterFactor": 44.66538924}
