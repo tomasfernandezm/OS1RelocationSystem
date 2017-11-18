@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chacarita</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand">r e l o c</a>
+            </div>
+    </nav>
+
+    <div class="container">
+        <form method="POST" action="/photo" encType="multipart/form-data">
+            <div class="row text-center">
+                <div class="col-xs-6 col-md-2 col-md-offset-4">
+                    <input id="pic" type="file" class="input-file" name="imageUpload" accept="image/*" capture>
+                    <label for="pic" class="btn btn-default btn-block">Elegir imagen</label>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <button type="submit" class="btn btn-default btn-block btn-send">Enviar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row center-block">
+          <img id="imgPreview" class="imgPreview img-responsive" onError="this.style.display = 'none';"/>
+        </div>
+
+        <div class="row">
+	    	<div class="col-md-2 col-sm-4 col-md-offset-5 col-sm-offset-4">
+	    		<div class="loader"></div>
+	    	</div>
+	    </div>
+    </div>
+
+
+
+    <script src="./javascript/jquery-3.2.0.min.js"></script>
+    <script src="./javascript/bootstrap.min.js"></script>
+    <script src="./javascript/myscripts.js"></script>
+
+</body>
+
+</html>

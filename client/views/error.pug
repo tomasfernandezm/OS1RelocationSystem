@@ -1,0 +1,24 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title Chacarita
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  link(rel='stylesheet', type='text/css', href='./error.css')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Dosis', rel='stylesheet')
+nav.navbar.navbar-inverse.container-fluid
+  .navbar-header
+    a.navbar-brand r e l o c
+.row
+  .col-md-6.col-md-offset-3
+    .error Ups! ha ocurrido un error. Por favor intentalo de nuevo!
+.row
+  .col-md-2.col-md-offset-5
+    button.btn.btn-error(onclick="location.href='http://localhost:3000';") Ir al Home
+
+
+
+
+  //- h1= message
+  //- h2= error.status
+  //- pre #{error.stack}
