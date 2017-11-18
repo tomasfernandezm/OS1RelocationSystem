@@ -84,13 +84,8 @@ int main(int argc, char **argv) {
     const string mapRoute = jsonConfig["MapRoute"];
     const string initialImageLocation = jsonConfig["InitialImageLocation"];
     const double meterFactor = jsonConfig["MeterFactor"];
-
-    cout << "Llegó" << endl;
+    
     ORB_SLAM2::System SLAM(rutaVocabulario, rutaConfiguracionORB, ORB_SLAM2::System::MONOCULAR, true);
-    cout << "No llegó" << endl;
-    cout << "Stalling" << endl;
-    cout << "Stalling" << endl;
-    cout << "Stalling" << endl;
     Sistema = &SLAM;
 
     ORB_SLAM2::Video video;
