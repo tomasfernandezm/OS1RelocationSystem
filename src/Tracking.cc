@@ -1236,11 +1236,6 @@ void Tracking::Reset()
     mpLocalMapper->RequestReset();	// Espera a confirmar el reseteo
     cout << " done" << endl;
 
-    // Reset Loop Closing
-    cout << "Reseting Loop Closing...";
-    mpLoopClosing->RequestReset();	// Espera hasta confirmar el reseteo
-    cout << " done" << endl;
-
     // Clear BoW Database
     cout << "Reseting Database...";
     mpKeyFrameDB->clear();	// Retorna cuando realizó el reseteo
