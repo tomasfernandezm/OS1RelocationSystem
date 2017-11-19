@@ -92,6 +92,14 @@ int main(int argc, char **argv) {
     new thread(&ORB_SLAM2::Video::Run, &video);
 
     cv::Mat initialMatrix = loadInitialMatrix(initialImageLocation, mapRoute);
+    float x = initialMatrix.at<float>(0, 0);
+    float y = initialMatrix.at<float>(1, 0);
+    float z = initialMatrix.at<float>(2, 0);
+    if(x == 0 && y == -1 && z == 0){
+        cerr << "Can't initialize properly" << endl;
+        cerr << "The system can't localize the initial point"<< endl;
+        exit(1);
+    }
     cv::Mat initialVector = initialMatrix * initialMatrix.col(3);
 
     while(!exitFlag) {
