@@ -1,7 +1,7 @@
-# OS1 Dependencies 
-The system was tested with Ubuntu 16.04 LTS.
+# Dependencias usadas por el OS1
+El sistema fue testeado utilizando Ubuntu 16.04 LTS.
 
-## Used APT Packages
+## Paquetes usados instalados mediante APT
 - build-essential 
 - wget 
 - git 
@@ -20,14 +20,14 @@ The system was tested with Ubuntu 16.04 LTS.
 - libjasper-dev 
 - libdc1394-22-dev
 
-## Used Libraries
+## Librerías Utilizadas
 - OpenCV 3.3.0
 - Boost 1.64.0
 - Pangolin
 - Eigen 3.3.4
-- Modified version of DBoW2 (included in the Thirdparty folder)
-- Modified version of g2o (included in the Thirdparty folder)
+- DBoW2 (versión modificada, incluida en la carpeta Thirdparty)
+- g2o (versión modificada, incluida en la carpeta Thirdparty)
 - JSON lib: https://github.com/nlohmann/json
 
 ## DBoW2 and g2o installation
-To install DBoW2 and g2o execute buildDependencies.sh in the scripts directory
+Para instalar DBoW2 y g2o solo hay que ejecutar el script "buildDependencies.sh" en el directorio "scripts"
