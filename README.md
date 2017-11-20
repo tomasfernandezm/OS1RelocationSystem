@@ -10,22 +10,22 @@ Está basado en 2 proyectos:
 ## Estructura
 
 ### Servidor en Node JS
-    El servidor de Node JS provee la webapp por la cual se accede a la aplicación. Por la webapp se sube una foto a el servidor. Cuando llega, este la manda al servidor de OS1 y espera la respuesta. Cuando obtiene la respuesta le envía al usuario una imagen de un mapa con un punto en el.
+El servidor de Node JS provee la webapp por la cual se accede a la aplicación. Por la webapp se sube una foto a el servidor. Cuando llega, este la manda al servidor de OS1 y espera la respuesta. Cuando obtiene la respuesta le envía al usuario una imagen de un mapa con un punto en el.
 
 ### Servidor de OS1
 
-    Utiliza CMake como build tool para el código C++
+Utiliza CMake como build tool para el código C++
 
 #### Set
-    El servidor de OS1 inicializa con un punto inicial desde el cual calculará 
+El servidor de OS1 inicializa con un punto inicial desde el cual calculará 
 todas las distancias. Este punto inicial es obtenido a través de una foto 
 inicialmente setteada.
 
 #### Funcionamiento
-    Arranca la ejecución del programa esperando por el envío de la imagen de la posición
+Arranca la ejecución del programa esperando por el envío de la imagen de la posición
 actual. Procesa la imagen y manda al servidor un string con el vector (x, y, z)
 desde el punto inicial.
-    El z representa la distancia de frente, el x de costado y el y es perpendicular
+El z representa la distancia de frente, el x de costado y el y es perpendicular
 al plano de la cámara. Como el y no es usado, se utiliza para control de errores.
 
 ## Tecnologías utilizadas.
